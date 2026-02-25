@@ -1,0 +1,79 @@
+# Dictionary storing all jokes and their parts
+quiz_data = {
+    "Parts of the Cell": {
+        "setup": "Calder: ",
+        "response": "",
+        "punchline": "Calder police I've been robbed!"
+    },
+    "Body Systems": {
+        "setup": "Tank: ",
+        "response": "You are welcome! ",
+        "punchline": ""
+    },
+    "Mitosis": {
+        "setup": "Broken pencil: ",
+        "response": "",
+        "punchline": "Nevermind, it's pointless!"
+    },
+     "Meiosis": {
+        "setup": "Broken pencil: ",
+        "response": "",
+        "punchline": "Nevermind, it's pointless!"
+    },
+     "Adaptation": {
+        "setup": "Broken pencil: ",
+        "response": "",
+        "punchline": "Nevermind, it's pointless!"
+    }
+}
+
+def tell_joke(setup, response, punchline):
+    """Runs the knock‑knock joke in the correct order."""
+    input("Knock Knock: ")
+    input(setup)
+    if response:
+        input(response)
+    if punchline:
+        print(punchline)
+
+def ask_for_topic(topics_list):
+    """Asks the user which joke they want and returns their choice."""
+    print("Choose a topic:", topics_list)
+    return input("Which one do you want? ")
+
+def get_rating():
+    """Asks the user for a rating and prints a satisfaction score."""
+    rating = int(input("Please rate our game 1–10: "))
+    score = rating * 10
+    print("Your satisfaction rate is " + str(score) + "%")
+
+def main():
+    topics = list(quiz_data.keys())  # dynamic list of available jokes
+
+    answer = input("Do you want help studying your AP Bio Vocab? ")
+
+    if answer == "no":
+        print("Okay, maybe next time!")
+        return
+
+    # Accept both "yes" and "another joke" as ways to continue
+    while answer in ["yes", "another question"]:
+        print("Great, let's play!")
+
+        topic_choice = ask_for_topic(topics)
+
+        if topic_choice in quiz_data:
+            tell_joke(**quiz_data[topic_choice])
+            del quiz_data[topic_choice]   # remove used joke
+            topics = list(quiz_data.keys())
+        else:
+            print("Sorry, that joke is no longer available.")
+
+        # Ask again
+        answer = input("Do you want to hear another question or are you finished? ")
+
+    # If they say "finished", ask for rating
+    if answer == "finished":
+        get_rating()
+
+main()
