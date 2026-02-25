@@ -1,0 +1,108 @@
+#   SUBJECT VOCAB DICTIONARIES
+
+bio_vocab = {
+    "Parts of the Cell": {
+        "Definition": "Smallest compents that make a cell function? ",
+        "Answer": "",
+        "Question": "It is DNA!"
+    },
+    "Cell Division": {
+        "Definition": "equal division of the cell's content into two daughter cells with identical genomes? ",
+        "Answer": "",
+        "Question": "It is mitosis!"
+    }
+}
+
+chem_vocab = {
+    "Units": {
+        "Definition": "unit that measures amount of substance? ",
+        "Answer": "",
+        "Question": "It is a mole!"
+    },
+    "Electrons": {
+        "Definition": "bond formed by transfer of electrons? ",
+        "Answer": "",
+        "Question": "It is an ionic bond!"
+    }
+}
+
+physics_vocab = {
+    "Movement": {
+        "Definition": "speed with direction? ",
+        "Answer": "",
+        "Question": "It is velocity!"
+    },
+    "": {
+        "Definition": "rate of change of velocity? ",
+        "Answer": "",
+        "Question": "It is acceleration!"
+    }
+}
+
+#   FUNCTIONS
+
+def ask_question(Question, Answer, Definition):
+    """Asks a vocab question."""
+    print("Definition:", Definition)
+    input("Your answer: ")
+    print("Correct answer was:", Question)
+    print()
+
+def choose_term(term_list):
+    """Lets user pick a vocab term."""
+    print("Choose a term:", term_list)
+    return input("Which one do you want? ")
+
+def get_rating():
+    rating = int(input("Please rate our study tool 1–10: "))
+    print("Your satisfaction rate is", rating * 10, "%")
+
+#   MAIN PROGRAM
+
+def main():
+
+    # FIRST QUESTION — AP BIO
+    answer = input("Do you want help studying your AP Bio vocab? ").lower()
+
+    if answer == "yes":
+        vocab = bio_vocab
+    else:
+        # SECOND QUESTION — AP CHEM
+        answer = input("Do you want help studying your AP Chem vocab? ").lower()
+
+        if answer == "yes":
+            vocab = chem_vocab
+        else:
+            # THIRD QUESTION — AP PHYSICS
+            answer = input("Do you want help studying your AP Physics vocab? ").lower()
+
+            if answer == "yes":
+                vocab = physics_vocab
+            else:
+                print("Okay, maybe next time!")
+                return
+
+    # If we reach here, user said YES to one subject
+    print("Great! Let's study.")
+
+    terms = list(vocab.keys())
+
+    while True:
+        term_choice = choose_term(terms)
+
+        if term_choice in vocab:
+            ask_question(**vocab[term_choice])
+            del vocab[term_choice]
+            terms = list(vocab.keys())
+        else:
+            print("Sorry, that term is not available.")
+
+        again = input("Do you want another question or are you finished? ").lower()
+
+        if again == "finished":
+            break
+
+    get_rating()
+
+
+main()

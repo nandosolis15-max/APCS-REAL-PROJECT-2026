@@ -1,34 +1,24 @@
 # Dictionary storing all jokes and their parts
 quiz_data = {
     "Parts of the Cell": {
-        "setup": "Calder: ",
-        "response": "",
-        "punchline": "Calder police I've been robbed!"
+        "Definition": "components that make a cell function: ",
+        "Answer": "",
+        "Question": "What parts of a cell?"
     },
-    "Body Systems": {
-        "setup": "Tank: ",
-        "response": "You are welcome! ",
-        "punchline": ""
+     "Mitosis": {
+        "Definition": "equal division of the cell's content into two daughter cells that have identical genomes: ",
+        "Answer": "",
+        "Question": "What is Mitosis?"
     },
-    "Mitosis": {
-        "setup": "Broken pencil: ",
-        "response": "",
-        "punchline": "Nevermind, it's pointless!"
-    },
-     "Meiosis": {
-        "setup": "Broken pencil: ",
-        "response": "",
-        "punchline": "Nevermind, it's pointless!"
-    },
-     "Adaptation": {
-        "setup": "Broken pencil: ",
-        "response": "",
-        "punchline": "Nevermind, it's pointless!"
+      "Natural Selection": {
+        "Definition": " the primary mechanism of evolution where organisms better adapted to their environment tend to survive and produce more offspring: ",
+        "Answer": "",
+        "Question": "What is Natural Selection?"
     }
 }
 
-def tell_joke(setup, response, punchline):
-    """Runs the knock‑knock joke in the correct order."""
+def tell_quiz(setup, response, punchline):
+    #"""Runs the knock‑knock joke in the correct order."""
     input("Knock Knock: ")
     input(setup)
     if response:
@@ -37,12 +27,12 @@ def tell_joke(setup, response, punchline):
         print(punchline)
 
 def ask_for_topic(topics_list):
-    """Asks the user which joke they want and returns their choice."""
+   # """Asks the user which joke they want and returns their choice."""
     print("Choose a topic:", topics_list)
     return input("Which one do you want? ")
 
 def get_rating():
-    """Asks the user for a rating and prints a satisfaction score."""
+    #"""Asks the user for a rating and prints a satisfaction score."""
     rating = int(input("Please rate our game 1–10: "))
     score = rating * 10
     print("Your satisfaction rate is " + str(score) + "%")
@@ -63,7 +53,7 @@ def main():
         topic_choice = ask_for_topic(topics)
 
         if topic_choice in quiz_data:
-            tell_joke(**quiz_data[topic_choice])
+            tell_quiz(**quiz_data[topic_choice])
             del quiz_data[topic_choice]   # remove used joke
             topics = list(quiz_data.keys())
         else:
